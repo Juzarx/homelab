@@ -17,7 +17,7 @@ A personal homelab project focused on learning modern infrastructure, self-hosti
 
 ### Host Machine
 
-HP Laptop
+HP ProBook 440 G5
 
 * CPU: Intel Core i7 8th Generation
 * RAM: 16 GB DDR4

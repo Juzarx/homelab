@@ -2,7 +2,7 @@
 
 ## Phase 1 - Foundations
 
-* [ ] Install Proxmox
+* [X] Install Proxmox
 * [ ] Configure SSD and HDD storage
 * [ ] Configure networking
 * [ ] Configure SSH access

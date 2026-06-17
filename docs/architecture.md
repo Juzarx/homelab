@@ -2,7 +2,7 @@
 
 ## Physical Host
 
-HP Laptop
+HP Probook 440 G5
 
 * Intel i7 8th Gen
 * 16 GB RAM
