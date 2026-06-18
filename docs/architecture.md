@@ -15,117 +15,89 @@ Runs:
 
 ---
 
-## Network
+## Physical Architecture
 
-Internet
+```mermaid
+graph TD
 
-↓
+Internet[Internet]
+Router[ISP Router]
+Proxmox[Proxmox Host]
 
-Router
+Infra[Infrastructure VM]
+Media[Media VM]
+Games[Games VM]
 
-↓
+Internet --> Router
+Router --> Proxmox
 
-Tailscale Network
+Proxmox --> Infra
+Proxmox --> Media
+Proxmox --> Games
+```
 
-↓
+## Services Architecture
 
-Proxmox Host
+```mermaid
+graph LR
 
-↓
+User[Your PC / Phone]
 
-Virtual Machines
+TS[Tailscale]
 
----
+Infra[Infrastructure VM]
 
-## VM 1 - Infrastructure
+Traefik[Traefik]
 
-Purpose:
+Media[Media VM]
 
-Core services and management.
+Nextcloud[Nextcloud]
+Books[Audiobookshelf]
+Music[Navidrome]
 
-Services:
+Grafana[Grafana]
+Prometheus[Prometheus]
 
-* Docker
-* Tailscale
-* Homepage
-* Reverse Proxy (future)
+User --> TS
 
----
+TS --> Infra
 
-## VM 2 - Media
+Infra --> Traefik
 
-Purpose:
+Infra --> Grafana
+Infra --> Prometheus
 
-Personal cloud and media.
+Traefik --> Media
+Traefik --> Grafana
 
-Services:
+Media --> Nextcloud
+Media --> Books
+Media --> Music
+```
 
-* Nextcloud
-* Audiobookshelf
-* Navidrome
-* Jellyfin
+## Games Architecture
 
-Storage:
+```mermaid
+graph LR
 
-* Media files stored on 1 TB HDD.
+Friends/Me
 
----
+Tailscale
 
-## VM 3 - Games
+GamesVM[Games VM]
 
-Purpose:
+Minecraft
 
-Dedicated game servers.
+ProjectZomboid
 
-Services:
+Satisfactory
 
-* Minecraft
-* Project Zomboid
-* Satisfactory
+Friends/Me --> Tailscale
 
-Storage:
+Tailscale --> GamesVM
 
-* Worlds and backups.
+GamesVM --> Minecraft
+GamesVM --> ProjectZomboid
+GamesVM --> Satisfactory
+```
 
----
-
-## VM 4 - Kubernetes Lab (Future)
-
-Purpose:
-
-Learning environment.
-
-Services:
-
-* Kubernetes
-* Helm
-* GitOps
-* Terraform experiments
-
----
-
-## Development Workflow
-
-PC
-
-↓
-
-VS Code
-
-↓
-
-Git
-
-↓
-
-GitHub Repository
-
-↓
-
-SSH into VMs
-
-↓
-
-Deploy using Docker Compose
-
-The GitHub repository is the source of truth for all configurations and automation.

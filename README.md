@@ -30,6 +30,7 @@ HP ProBook 440 G5
 
 * Proxmox
 * Tailscale
+* Traefik
 * Docker
 * SSH
 * Homepage Dashboard
@@ -39,7 +40,6 @@ HP ProBook 440 G5
 * Nextcloud
 * Audiobookshelf
 * Navidrome
-* Jellyfin
 
 ### Games
 
