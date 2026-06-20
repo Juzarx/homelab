@@ -39,40 +39,38 @@ Proxmox --> Games
 ## Services Architecture
 
 ```mermaid
-graph LR
+graph TD
 
 User[Your PC / Phone]
 
 TS[Tailscale]
 
-Infra[Infrastructure VM]
+subgraph Infra["Infrastructure VM"]
+    Homepage[Homepage]
+    Traefik[Traefik]
+    Prometheus[Prometheus]
+    Grafana[Grafana]
+end
 
-Traefik[Traefik]
-
-Media[Media VM]
-
-Nextcloud[Nextcloud]
-Books[Audiobookshelf]
-Music[Navidrome]
-
-Grafana[Grafana]
-Prometheus[Prometheus]
+subgraph Media["Media VM"]
+    Nextcloud[Nextcloud]
+    Books[Audiobookshelf]
+    Music[Navidrome]
+end
 
 User --> TS
 
-TS --> Infra
+TS --> Traefik
+TS --> Homepage
 
-Infra --> Traefik
+Homepage -. Links .-> Traefik
 
-Infra --> Grafana
-Infra --> Prometheus
-
-Traefik --> Media
+Traefik --> Nextcloud
+Traefik --> Books
+Traefik --> Music
 Traefik --> Grafana
 
-Media --> Nextcloud
-Media --> Books
-Media --> Music
+Prometheus --> Grafana
 ```
 
 ## Games Architecture

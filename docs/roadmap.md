@@ -6,9 +6,8 @@
 
 - [x] Install Proxmox VE
 - [x] Configure DHCP reservation on ISP router
-- [ ] Configure SSH access
-- [ ] Configure SSH keys
-- [ ] Install Tailscale on Proxmox
+- [x] Configure SSH access
+- [x] Configure SSH keys
 - [x] Create GitHub repository
 - [ ] Complete documentation
 
