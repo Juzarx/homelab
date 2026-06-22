@@ -12,17 +12,17 @@
 - [Day 1](./001-Day1-Proxmox-Installation.md)
 - [Ubuntu Server download](https://ubuntu.com/download/server)
 
-## SSH to Proxmox using a SSH key pair:
+## SSH to Proxmox using an SSH key pair:
 
 - Access Proxmox using `ssh root@YourProxmoxIP` and inserting the password.
-- Create a SSH key pair on the main pc using `ssh-keygen -t ed25519 -C "AnyIdentifierYouLike"\
+- Create an SSH key pair on the local machine using `ssh-keygen -t ed25519 -C "AnyIdentifierYouLike"`
 - On a powershell terminal we use `Get-Content $HOME\.ssh\id_ed25519.pub` and copy the public key
 - Now in the proxmox terminal we use `mkdir -p ~/.ssh` to create the .ssh folder if it does not exist
 - Change the permissions on the folder to execute, read and write for the owner with `chmod 700 ~/.ssh`
 - Open the ssh keys file with `nano ~/.ssh/authorized_keys`
 - Paste the key gotten on powershell previously
 - Use `ctrl + O` and `Enter` to save the changes and `ctrl + X` to exit the file
-- Change the file permissions to read adn write only by the owner with `chmod 600 ~/.ssh/authorized_keys`
+- Change the file permissions to read and write only by the owner with `chmod 600 ~/.ssh/authorized_keys`
 - Test the configuration with: `ssh root@YourProxmoxIP`. If no password is requested, the key authentication is working correctly.
 
 ## Installing Ubuntu Server VM on Proxmox:
@@ -41,11 +41,28 @@
 - Reboot the VM
 - Enter your credentials
 - Use `sudo apt update` and `sudo apt upgrade -y` to update all the packages
-- - Use `sudo apt install qemu-guest-agent curl git -y`
+- Use:
+
+  `sudo apt install qemu-guest-agent curl git -y`
+
   to install:
-    - qemu-guest-agent: allows Proxmox to communicate with the VM.
-    - curl: tool to make HTTP requests and download scripts.
-    - git: version control system used for GitHub.
+
+  - **qemu-guest-agent**: Allows Proxmox to communicate with the VM.
+  - **curl**: Tool used to make HTTP requests and download scripts.
+  - **git**: Version control system used for GitHub repositories.
+
+## SSH to the infrastructure using a SSH key pair:
+
+- Access the VM using `ssh YourUser@YourVMIP` and inserting the password.
+- On a powershell terminal we use `Get-Content $HOME\.ssh\id_ed25519.pub` and copy the public key
+- Now in the VM terminal we use `mkdir -p ~/.ssh` to create the .ssh folder if it does not exist
+- Change the permissions on the folder to execute, read and write for the owner with `chmod 700 ~/.ssh`
+- Open the ssh keys file with `nano ~/.ssh/authorized_keys`
+- Paste the key gotten on powershell previously
+- Use `ctrl + O` and `Enter` to save the changes and `ctrl + X` to exit the file
+- Change the file permissions to read adn write only by the owner with `chmod 600 ~/.ssh/authorized_keys`
+- Test the configuration with: `ssh YourUser@YourVMIP`. If no password is requested, the key authentication is working correctly.
+
 
 ## Lessons learned
 
@@ -53,4 +70,5 @@
 - qemu-guest-agent improves the integration between Proxmox and the VM.
 - Using DHCP reservations is easier to maintain than configuring static IPs inside each VM.
 - Modern VM settings such as q35, OVMF and VirtIO provide better compatibility and performance.
+- It's okay to use the same SSH key pair on proxmox and all VMs.
 
