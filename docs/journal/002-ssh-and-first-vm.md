@@ -51,16 +51,18 @@
   - **curl**: Tool used to make HTTP requests and download scripts.
   - **git**: Version control system used for GitHub repositories.
 
+
+
 ## SSH to the infrastructure using a SSH key pair:
 
 - Access the VM using `ssh YourUser@YourVMIP` and inserting the password.
-- On a powershell terminal we use `Get-Content $HOME\.ssh\id_ed25519.pub` and copy the public key
+- On a powershell terminal we use `Get-Content $HOME\.ssh\id_ed25519.pub` and copy the public keys
 - Now in the VM terminal we use `mkdir -p ~/.ssh` to create the .ssh folder if it does not exist
 - Change the permissions on the folder to execute, read and write for the owner with `chmod 700 ~/.ssh`
 - Open the ssh keys file with `nano ~/.ssh/authorized_keys`
 - Paste the key gotten on powershell previously
 - Use `ctrl + O` and `Enter` to save the changes and `ctrl + X` to exit the file
-- Change the file permissions to read adn write only by the owner with `chmod 600 ~/.ssh/authorized_keys`
+- Change the file permissions to read and write only by the owner with `chmod 600 ~/.ssh/authorized_keys`
 - Test the configuration with: `ssh YourUser@YourVMIP`. If no password is requested, the key authentication is working correctly.
 
 
