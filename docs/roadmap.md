@@ -9,7 +9,7 @@
 - [x] Configure SSH access
 - [x] Configure SSH keys
 - [x] Create GitHub repository
-- [ ] Complete documentation
+- [X] Complete documentation
 
 **Skills:**
 - Linux
@@ -28,15 +28,15 @@
 - Ubuntu Server
 - 2 vCPU
 - 2 GB RAM
-- 30 GB Disk
+- 32 GB Disk
 
 ### Services
 
-- [ ] Install Docker
-- [ ] Install Docker Compose
+- [X] Install Docker
+- [X] Install Docker Compose
 - [ ] Install Tailscale
 - [ ] Deploy Homepage
-- [ ] Deploy Traefik
+- [X] Deploy Traefik
 
 **Skills:**
 - Docker
