@@ -1,11 +1,12 @@
 # Why I chose Traefik — 2026-06-17
 
 ## Context
-I need to connect to my services without memorizing ip addresses,
-this is the routing layer that sits behind Tailscale.
+I need a way to route incoming requests to the right Docker container
+based on hostname. Pi-hole resolves the name to the server IP, but
+something still needs to decide which container handles the request
+once it arrives.
 ## Decision
-Traefik sits in front of all my Docker containers and routes requests to
-the right one based on the hostname. When I add a new container, I just
+Traefik is the routing layer between the network and my Docker containers. When I add a new container, I just
 add a label to it and Traefik picks it up automatically — no config file
 to edit.
 ## Why not Nginx
