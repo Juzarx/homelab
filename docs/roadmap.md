@@ -24,23 +24,22 @@
 **Goal:** Create the management environment.
 
 ### VM Specs
-
 - Ubuntu Server
 - 2 vCPU
 - 2 GB RAM
 - 32 GB Disk
 
 ### Services
-
-- [X] Install Docker
-- [X] Install Docker Compose
-- [ ] Install Tailscale
+- [x] Install Docker
+- [x] Deploy Traefik
+- [ ] Deploy Pi-hole
 - [ ] Deploy Homepage
-- [X] Deploy Traefik
+- [ ] Install Tailscale
 
 **Skills:**
 - Docker
 - Reverse Proxy
+- DNS
 - Linux Administration
 
 ---
@@ -57,7 +56,8 @@
 - 100 GB Disk
 
 ### Services
-
+- [ ] Install Docker
+- [ ] Install Tailscale
 - [ ] Deploy Nextcloud
 - [ ] Deploy Audiobookshelf
 - [ ] Deploy Navidrome
@@ -103,12 +103,12 @@
 **Goal:** Monitor the homelab.
 
 ### Services
-
 - [ ] Deploy Prometheus
 - [ ] Deploy Grafana
-- [ ] Install Node Exporter
+- [ ] Install Node Exporter on Infra VM
+- [ ] Install Node Exporter on Media VM
+- [ ] Install Node Exporter on Games VM
 - [ ] Monitor containers
-- [ ] Monitor VMs
 - [ ] Create dashboards
 
 **Skills:**
@@ -172,6 +172,8 @@
 ## Phase 9 - Kubernetes Lab
 
 **Goal:** Learn container orchestration.
+
+> This phase is exploratory — tackle it after the rest of the homelab is stable and running.
 
 ### Kubernetes Lab VM
 

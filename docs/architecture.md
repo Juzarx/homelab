@@ -39,15 +39,15 @@ Proxmox --> Games
 ## Services Architecture
 
 ```mermaid
-graph TD
+graph LR
 
-User[Your PC / Phone]
-
+User["Your PC / Phone"]
 TS[Tailscale]
 
 subgraph Infra["Infrastructure VM"]
-    Homepage[Homepage]
+    Pihole["Pi-hole (DNS)"]
     Traefik[Traefik]
+    Homepage[Homepage]
     Prometheus[Prometheus]
     Grafana[Grafana]
 end
@@ -58,17 +58,20 @@ subgraph Media["Media VM"]
     Music[Navidrome]
 end
 
+User -->|DNS| Pihole
 User --> TS
-
 TS --> Traefik
-TS --> Homepage
 
-Homepage -. Links .-> Traefik
-
+Traefik --> Homepage
+Traefik --> Grafana
 Traefik --> Nextcloud
 Traefik --> Books
 Traefik --> Music
-Traefik --> Grafana
+
+Homepage -.-> Nextcloud
+Homepage -.-> Grafana
+Homepage -.-> Books
+Homepage -.-> Music
 
 Prometheus --> Grafana
 ```
@@ -78,22 +81,15 @@ Prometheus --> Grafana
 ```mermaid
 graph LR
 
-Friends/Me
-
-Tailscale
-
+Me["Friends / Me"]
+Tailscale[Tailscale]
 GamesVM[Games VM]
+Minecraft[Minecraft]
+ProjectZomboid[Project Zomboid]
+Satisfactory[Satisfactory]
 
-Minecraft
-
-ProjectZomboid
-
-Satisfactory
-
-Friends/Me --> Tailscale
-
+Me --> Tailscale
 Tailscale --> GamesVM
-
 GamesVM --> Minecraft
 GamesVM --> ProjectZomboid
 GamesVM --> Satisfactory
