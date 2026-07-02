@@ -32,8 +32,8 @@
 ### Services
 - [x] Install Docker
 - [x] Deploy Traefik
-- [ ] Deploy Pi-hole
-- [ ] Deploy Homepage
+- [X] Deploy Pi-hole
+- [x] Deploy Homepage
 - [ ] Install Tailscale
 
 **Skills:**
@@ -105,6 +105,8 @@
 ### Services
 - [ ] Deploy Prometheus
 - [ ] Deploy Grafana
+- [ ] Install lm-sensors on all VMs
+- [ ] Import Node Exporter community dashboard in Grafana
 - [ ] Install Node Exporter on Infra VM
 - [ ] Install Node Exporter on Media VM
 - [ ] Install Node Exporter on Games VM
