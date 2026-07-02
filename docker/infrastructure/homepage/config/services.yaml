@@ -1,0 +1,23 @@
+- Infrastructure:
+    - Traefik:
+        href: http://traefik.home:8080
+        description: Reverse proxy
+        icon: traefik.png
+        widget:
+          type: traefik
+          url: http://traefik:8080
+
+    - Pi-hole:
+        href: http://pihole.home:8888/admin
+        description: DNS and ad blocker
+        icon: pi-hole.png
+        widget:
+          type: pihole
+          url: http://pihole
+          version: 6
+          key: {{HOMEPAGE_VAR_PIHOLE_API_KEY}}
+- Monitoring:
+    - Grafana:
+        href: http://grafana.home
+        description: Metrics dashboard
+        icon: grafana.png
