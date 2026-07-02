@@ -11,6 +11,7 @@
 - [Architecture](../architecture.md)
 - [Day 3](./003-docker-installation-and-first-containers.md)
 - [Pi-hole on docker](https://github.com/pi-hole/docker-pi-hole/#running-pi-hole-docker)
+- [Day 5](./005-homepage-deploy-and-setup.md)
 
 ## Pi-hole installation
 - Created a new folder on `~/docker/infrastructure/pihole` and opened it.
