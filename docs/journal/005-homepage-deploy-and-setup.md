@@ -14,6 +14,7 @@
 - [Homepage Settings](https://gethomepage.dev/configs/settings/)
 - [Homepage Docker Compose File](/docker/infrastructure/homepage/docker-compose.yml)
 - [Traefik Docker Labels](https://doc.traefik.io/traefik/reference/routing-configuration/other-providers/docker/)
+- [Day 6](./006-power-outage-and-dns-troubleshooting.md)
 
 ## Deploying homepage
 - Created a folder in the VM with the route `~/docker/infrastructure/homepage/config`.
