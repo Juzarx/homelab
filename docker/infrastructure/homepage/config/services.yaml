@@ -1,6 +1,6 @@
 - Infrastructure:
     - Traefik:
-        href: http://traefik.home:8080
+        href: http://traefik.home
         description: Reverse proxy
         icon: traefik.png
         widget:
@@ -8,7 +8,7 @@
           url: http://traefik:8080
 
     - Pi-hole:
-        href: http://pihole.home:8888/admin
+        href: http://pihole.home/admin
         description: DNS and ad blocker
         icon: pi-hole.png
         widget:
