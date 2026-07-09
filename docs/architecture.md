@@ -54,7 +54,7 @@ end
 
 subgraph Media["Media VM"]
     Nextcloud[Nextcloud]
-    Books[Audiobookshelf]
+    Books[Grimmory]
     Music[Navidrome]
 end
 

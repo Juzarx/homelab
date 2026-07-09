@@ -34,7 +34,7 @@
 - [x] Deploy Traefik
 - [X] Deploy Pi-hole
 - [x] Deploy Homepage
-- [ ] Install Tailscale
+- [x] Install Tailscale
 
 **Skills:**
 - Docker
@@ -56,12 +56,12 @@
 - 100 GB Disk
 
 ### Services
-- [ ] Install Docker
-- [ ] Install Tailscale
+- [x] Install Docker
+- [x] Install Tailscale
 - [ ] Deploy Nextcloud
-- [ ] Deploy Audiobookshelf
+- [ ] Deploy Grimmory
 - [ ] Deploy Navidrome
-- [ ] Configure persistent volumes
+- [x] Configure persistent volumes
 - [ ] Configure backups
 
 **Skills:**
