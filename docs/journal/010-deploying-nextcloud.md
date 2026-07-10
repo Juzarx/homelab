@@ -2,7 +2,7 @@
 
 **Date:** 2026-07-09
 
-**Objective:** Set up the HDD storage disk and deploy nextcloud
+**Objective:** Deploy nextcloud and route it with traefik
 
 **Status:** Complete
 
