@@ -21,3 +21,13 @@
         href: http://grafana.home
         description: Metrics dashboard
         icon: grafana.png
+- Media:
+    - Nextcloud:
+        href: http://nextcloud.home
+        description: Cloud Storage
+        icon: nextcloud.png
+        widget:
+            type: nextcloud
+            url: http://192.168.1.72:8081
+            key: {{HOMEPAGE_VAR_NEXTCLOUD_TOKEN}}
+            fields: ["cpuload", "memoryusage", "freespace"]
