@@ -1,0 +1,51 @@
+services:
+  grimmory:
+    image: grimmory/grimmory:v3.2.4
+    container_name: grimmory
+    restart: unless-stopped
+    depends_on:
+      mariadb:
+        condition: service_healthy
+    environment:
+      - USER_ID=${APP_USER_ID}
+      - GROUP_ID=${APP_GROUP_ID}
+      - TZ=${TZ}
+      - DATABASE_URL=${DATABASE_URL}
+      - DATABASE_USERNAME=${DB_USER}
+      - DATABASE_PASSWORD=${DB_PASSWORD}
+      - BOOKLORE_PORT=${BOOKLORE_PORT}
+      - ALLOWED_ORIGINS=${ALLOWED_ORIGINS}
+    ports:
+      - "6060:6060"
+    volumes:
+      - /mnt/media/grimmory/data:/app/data
+      - /mnt/media/grimmory/books:/books
+      - /mnt/media/grimmory/bookdrop:/bookdrop
+    networks:
+      - media
+
+  mariadb:
+    image: lscr.io/linuxserver/mariadb:11.4.5
+    container_name: grimmory-db
+    restart: unless-stopped
+    environment:
+      - PUID=${DB_USER_ID}
+      - PGID=${DB_GROUP_ID}
+      - TZ=${TZ}
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+      - MYSQL_DATABASE=${MYSQL_DATABASE}
+      - MYSQL_USER=${DB_USER}
+      - MYSQL_PASSWORD=${DB_PASSWORD}
+    volumes:
+      - /mnt/media/grimmory/db/config
+    networks:
+      - media
+    healthcheck:
+      test: ["CMD", "mariadb-admin", "ping", "-h", "localhost"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+networks:
+  media:
+    external: true

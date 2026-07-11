@@ -3,3 +3,10 @@ theme: dark
 color: slate
 headerStyle: boxed
 target: _blank
+layout:
+  Media:
+    style: row
+    columns: 4
+providers:
+  openweathermap: openweathermapapikey
+  weatherapi: weatherapiapikey

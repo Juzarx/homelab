@@ -1,0 +1,12 @@
+http:
+  routers:
+    grimmory:
+      rule: "Host(`grimmory.home`)"
+      service: grimmory-svc
+      entrypoints:
+        - web
+  services:
+    grimmory-svc:
+      loadBalancer:
+        servers:
+          - url: "MyVMIP:6060"
