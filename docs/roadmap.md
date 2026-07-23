@@ -53,15 +53,15 @@
 - Ubuntu Server
 - 4 vCPU
 - 4 GB RAM
-- 32 GB SSD
+- 64 GB SSD
 - 750 GB HDD
 
 ### Services
 - [x] Install Docker
 - [x] Install Tailscale
 - [x] Deploy Nextcloud
-- [ ] Deploy Grimmory
-- [ ] Deploy Navidrome
+- [x] Deploy Grimmory
+- [x] Deploy Navidrome
 - [x] Configure persistent volumes
 - [ ] Configure backups
 
