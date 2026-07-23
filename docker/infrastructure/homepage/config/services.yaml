@@ -35,3 +35,13 @@
         href: http://grimmory.home
         description: Library
         icon: booklore.png
+    - Navidrome:
+        href: http://navidrome.home
+        description: Music
+        icon: navidrome.png
+        widget:
+            type: navidrome
+            url: {{HOMEPAGE_VAR_NAVIDROME_URL}}
+            user: julio
+            token: {{HOMEPAGE_VAR_NAVIDROME_TOKEN}}
+            salt: {{HOMEPAGE_VAR_NAVIDROME_SALT}}

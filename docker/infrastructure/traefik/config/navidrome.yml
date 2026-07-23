@@ -1,0 +1,12 @@
+http:
+  routers:
+    navidrome:
+      rule: "Host(`navidrome.home`)"
+      service: navidrome-svc
+      entrypoints:
+        - web
+  services:
+    navidrome-svc:
+      loadBalancer:
+        servers:
+          - url: "http://192.168.1.72:4533"
