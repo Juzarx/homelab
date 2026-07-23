@@ -28,6 +28,10 @@
         icon: nextcloud.png
         widget:
             type: nextcloud
-            url: http://192.168.1.72:8081
+            url: {{HOMEPAGE_VAR_NEXTCLOUD_URL}}
             key: {{HOMEPAGE_VAR_NEXTCLOUD_TOKEN}}
             fields: ["cpuload", "memoryusage", "freespace"]
+    - Grimmory:
+        href: http://grimmory.home
+        description: Library
+        icon: booklore.png
