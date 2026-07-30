@@ -63,7 +63,7 @@
 - [x] Deploy Grimmory
 - [x] Deploy Navidrome
 - [x] Configure persistent volumes
-- [ ] Configure backups
+- [x] Configure backups
 
 **Skills:**
 - Docker Compose

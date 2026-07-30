@@ -11,6 +11,7 @@
 - [Architecture](../architecture.md)
 - [Day 11](./011-deploying-grimmory.md)
 - [Navidrome Documentation](https://www.navidrome.org/docs/)
+- [Day 13](./013-backups-and-lid-close-fix.md)
 
 ## Extending the logical volume
 - Realized the 32gb assigned to the VM disk wasn't fully allocated to the filesystem.
