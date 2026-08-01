@@ -80,13 +80,13 @@
 
 - Ubuntu Server
 - 4 vCPU
-- 6 GB RAM
-- 100 GB Disk
+- 8 GB RAM
+- 64 GB Disk
 
 ### Services
 
-- [ ] Install Docker
-- [ ] Install Tailscale
+- [x] Install Docker
+- [x] Install Tailscale
 - [ ] Deploy Minecraft Server
 - [ ] Deploy Project Zomboid Server
 - [ ] Deploy Satisfactory Dedicated Server
