@@ -1,0 +1,27 @@
+services:
+  minecraft:
+    image: itzg/minecraft-server:java21
+    container_name: minecraft
+    restart: unless-stopped
+    ports:
+      - "25565:25565"
+    environment:
+      EULA: "TRUE"
+      VERSION: "1.21.1"
+      TYPE: AUTO_CURSEFORGE
+      CF_API_KEY: ${CF_API_KEY}
+      CF_SLUG: ${CF_SLUG}
+      CF_FILE_ID: ${CF_FILE_ID}
+      CF_EXCLUDE_MODS: "1245453,1388138"
+      MEMORY: 6G
+      TZ: America/Mexico_City
+    volumes:
+      - ./data:/data
+    networks:
+      - games
+    stdin_open: true
+    tty: true
+
+networks:
+  games:
+    external: true
