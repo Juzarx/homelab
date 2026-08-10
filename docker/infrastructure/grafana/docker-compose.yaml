@@ -1,0 +1,25 @@
+services:
+  grafana:
+    image: grafana/grafana:latest
+    container_name: grafana
+    restart: unless-stopped
+    environment:
+      GF_SECURITY_ADMIN_USER: ${GF_SECURITY_ADMIN_USER}
+      GF_SECURITY_ADMIN_PASSWORD: ${GF_SECURITY_ADMIN_PASSWORD}
+      GF_SERVER_ROOT_URL: http://grafana.home
+    volumes:
+      - grafana_data:/var/lib/grafana
+    networks:
+      - infra
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.grafana.rule=Host(`grafana.home`)"
+      - "traefik.http.routers.grafana.entrypoints=web"
+      - "traefik.http.services.grafana.loadbalancer.server.port=3000"
+
+volumes:
+  grafana_data:
+
+networks:
+  infra:
+    external: true
