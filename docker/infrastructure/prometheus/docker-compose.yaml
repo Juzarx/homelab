@@ -1,0 +1,22 @@
+services:
+  prometheus:
+    image: prom/prometheus:v3.13.2
+    container_name: prometheus
+    restart: unless-stopped
+    volumes:
+      - ./prometheus.yaml:/etc/prometheus/prometheus.yml:ro
+      - prometheus_data:/prometheus
+    networks:
+      - infra
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.prometheus.rule=Host(`prometheus.home`)"
+      - "traefik.http.routers.prometheus.entrypoints=web"
+      - "traefik.http.services.prometheus.loadbalancer.server.port=9090"
+
+volumes:
+  prometheus_data:
+
+networks:
+  infra:
+    external: true

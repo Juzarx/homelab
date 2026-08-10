@@ -1,0 +1,25 @@
+global:
+  scrape_interval: 15s
+
+scrape_configs:
+  - job_name: 'infra-vm'
+    static_configs:
+      - targets: ['node-exporter:9100']
+        labels:
+          vm: 'infra'
+
+  - job_name: 'media-vm'
+    static_configs:
+      - targets: ['192.168.1.72:9100']
+        labels:
+          vm: 'media'
+
+  - job_name: 'games-vm'
+    static_configs:
+      - targets: ['192.168.1.68:9100']
+        labels:
+          vm: 'games'
+
+  - job_name: 'prometheus'
+    static_configs:
+      - targets: ['localhost:9090']
