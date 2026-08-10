@@ -21,6 +21,19 @@
         href: http://grafana.home
         description: Metrics dashboard
         icon: grafana.png
+        widget:
+            type: grafana
+            version: 2
+            url: http://grafana:3000
+            username: {{HOMEPAGE_VAR_GRAFANA_USER}}
+            password: {{HOMEPAGE_VAR_GRAFANA_PASSWORD}}
+    - Prometheus:
+        href: http://prometheus.home
+        description: Metrics collection
+        icon: prometheus.png
+        widget:
+            type: prometheus
+            url: http://prometheus:9090
 - Media:
     - Nextcloud:
         href: http://nextcloud.home
