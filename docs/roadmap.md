@@ -74,27 +74,27 @@
 
 ## Phase 4 - Games VM
 
-**Goal:** Host dedicated game servers.
+**Goal:** Host a modded Minecraft server.
 
 ### VM Specs
 
 - Ubuntu Server
 - 4 vCPU
 - 8 GB RAM
-- 64 GB Disk
+- 64 GB SSD
 
 ### Services
 
 - [x] Install Docker
 - [x] Install Tailscale
-- [ ] Deploy Minecraft Server
-- [ ] Deploy Project Zomboid Server
-- [ ] Deploy Satisfactory Dedicated Server
-- [ ] Configure backups
+- [x] Deploy Minecraft Server (KEO RPG Optimized modpack, 200+ mods, NeoForge)
+- [x] Configure backups
+- [x] Set up client with Prism Launcher
 
 **Skills:**
 - Docker
-- Game Server Administration
+- Modded game server administration
+- CurseForge/NeoForge modding
 - Networking
 
 ---
@@ -104,15 +104,14 @@
 **Goal:** Monitor the homelab.
 
 ### Services
-- [ ] Deploy Prometheus
-- [ ] Deploy Grafana
-- [ ] Install lm-sensors on all VMs
-- [ ] Import Node Exporter community dashboard in Grafana
-- [ ] Install Node Exporter on Infra VM
-- [ ] Install Node Exporter on Media VM
-- [ ] Install Node Exporter on Games VM
+- [x] Install Node Exporter on Infra VM
+- [x] Install Node Exporter on Media VM
+- [x] Install Node Exporter on Games VM
+- [x] Deploy Prometheus
+- [x] Deploy Grafana
+- [x] Import Node Exporter community dashboard in Grafana (ID 1860)
 - [ ] Monitor containers
-- [ ] Create dashboards
+- [ ] lm-sensors for hardware temps
 
 **Skills:**
 - Monitoring
