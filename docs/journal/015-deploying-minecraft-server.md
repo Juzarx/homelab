@@ -12,6 +12,7 @@
 - [Day 14](./014-creating-and-setting-up-games-vm.md)
 - [itzg/docker-minecraft-server](https://github.com/itzg/docker-minecraft-server)
 - [KEO RPG optimized modpack](https://www.curseforge.com/minecraft/modpacks/keo-rpg-optimized)
+- [Day 16](./016-starting-with-monitoring.md)
 
 ## Getting the modpack info
 - Modpack is KEO RPG optimized, over 200 mods, Minecraft 1.21.1, NeoForge.
