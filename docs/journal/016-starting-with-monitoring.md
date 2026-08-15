@@ -15,6 +15,7 @@
 - [Traefik labels](https://doc.traefik.io/traefik/reference/routing-configuration/other-providers/docker/)
 - [Grafana on docker](https://grafana.com/docs/grafana/latest/setup-grafana/installation/docker/)
 - [Grafana Community dashboards](https://grafana.com/grafana/dashboards/)
+- [Day 17](./017-container-monitoring.md).
 
 ## Installing node-exporter in all VMs
 - Connected to the infrastructure VM.
