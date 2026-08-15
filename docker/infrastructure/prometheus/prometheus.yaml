@@ -23,3 +23,21 @@ scrape_configs:
   - job_name: 'prometheus'
     static_configs:
       - targets: ['localhost:9090']
+      
+  - job_name: 'infra-containers'
+    static_configs:
+      - targets: ['cadvisor:8080']
+        labels:
+          vm: 'infra'
+
+  - job_name: 'media-containers'
+    static_configs:
+      - targets: ['MediaVMIP:8085']
+        labels:
+          vm: 'media'
+
+  - job_name: 'games-containers'
+    static_configs:
+      - targets: ['GamesVMIP:8085']
+        labels:
+          vm: 'games'
