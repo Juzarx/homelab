@@ -37,7 +37,7 @@ services:
       - MYSQL_USER=${DB_USER}
       - MYSQL_PASSWORD=${DB_PASSWORD}
     volumes:
-      - /mnt/media/grimmory/db/config
+      - /mnt/media/grimmory/db:/config
     networks:
       - media
     healthcheck:
