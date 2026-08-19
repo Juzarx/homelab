@@ -23,7 +23,7 @@ scrape_configs:
   - job_name: 'prometheus'
     static_configs:
       - targets: ['localhost:9090']
-      
+
   - job_name: 'infra-containers'
     static_configs:
       - targets: ['cadvisor:8080']
@@ -32,12 +32,19 @@ scrape_configs:
 
   - job_name: 'media-containers'
     static_configs:
-      - targets: ['MediaVMIP:8085']
+      - targets: ['192.168.1.72:8085']
         labels:
           vm: 'media'
 
   - job_name: 'games-containers'
     static_configs:
-      - targets: ['GamesVMIP:8085']
+      - targets: ['192.168.1.68:8085']
         labels:
           vm: 'games'
+
+  - job_name: 'Proxmox-host'
+    static_configs:
+      - targets: ['192.168.1.69:9100']
+        labels:
+          vm: 'Proxmox-host'
+    
