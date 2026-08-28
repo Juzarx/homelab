@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Homelab Control Panel</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
+</head>
+<body>
+    <main class="container">
+        <h1>Homelab Control Panel</h1>
+
+        <article>
+            <header>Minecraft Server</header>
+            <p>Status: <span id="mc-status">Checking...</span></p>
+            <button id="start-btn">Start</button>
+            <button id="stop-btn" class="secondary">Stop</button>
+            <p>Players Online: </p>
+            <ul id ="player-list"></ul>
+        </article>
+    </main>
+
+    <script src="{{ url_for('static', filename='app.js') }}"></script>
+</body>
+</html>
