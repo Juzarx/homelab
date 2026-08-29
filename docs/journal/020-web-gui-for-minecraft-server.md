@@ -1,4 +1,4 @@
-# Day 19 - Web GUI for Minecraft server
+# Day 20 - Web GUI for Minecraft server
 
 **Date:** 2026-08-27
 
@@ -11,6 +11,7 @@
 - [Architecture](../architecture.md)
 - [Day 19](./019-health-script-and-minecraft-control-api.md)
 - [Flask docs](https://flask.palletsprojects.com/)
+- [Day 21](./021-persistent-control-panel-and-traefik-routing.md)
 
 ## Creating the web GUI
 - Decided to use pico.css as an easy way of css.
