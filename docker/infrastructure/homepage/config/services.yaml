@@ -34,6 +34,10 @@
         widget:
             type: prometheus
             url: http://prometheus:9090
+    - Control Panel:
+        href: http://control.home
+        description: Minecraft Control Panel
+        icon: minecraft.png              
 - Media:
     - Nextcloud:
         href: http://nextcloud.home

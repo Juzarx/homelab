@@ -1,0 +1,12 @@
+http:
+  routers:
+    control:
+      rule: "Host(`control.home`)"
+      service: control-svc
+      entrypoints:
+        - web
+  services:
+    control-svc:
+      loadBalancer:
+        servers:
+          - url: "http://InfraVMIP:5000"
