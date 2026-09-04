@@ -1,6 +1,13 @@
 import requests
 import socket
+import os
 from datetime import datetime
+from dotenv import load_dotenv
+
+load_dotenv()
+DISCORD_WEBHOOK_URL = os.getenv("DISCORD_WEBHOOK_URL")
+TELEGRAM_BOT_TOKEN = os.getenv("TELEGRAM_BOT_TOKEN")
+TELEGRAM_CHAT_ID = os.getenv("TELEGRAM_CHAT_ID")
 
 HTTP_SERVICES = {
     "Homepage": ("http://localhost", "homepage.home"),
@@ -32,15 +39,50 @@ def check_tcp(name, host, port):
     except OSError as e:
         return f"DOWN ({type(e).__name__})"
 
+def send_discord_alert(down_services):
+    message = "** Homelab Alert **\nThe following services are DOWN:\n"
+    for name, status in down_services:
+        message += f"- {name}: {status}"
+    try:
+        requests.post(DISCORD_WEBHOOK_URL, json ={"content": message}, timeout=5)
+    except requests.exceptions.RequestException:
+        print("Failde to send Discord Alert")
+
+def send_telegram_alert(down_services):
+    message = "Homelab Alert\nThe following services are DOWN\n"
+    for name, status in down_services:
+        message += f"-{name}: {status}\n"
+    url = f"https://api.telegram.org/bot{TELEGRAM_BOT_TOKEN}/sendMessage"
+    try:
+        requests.post(url, json={"chat_id": TELEGRAM_CHAT_ID,"text": message}, timeout=5)
+    except requests.exceptions.RequestException:
+        print("Failed to send telegram alert")
+    
+
+
 def main():
     print(f"Health check - {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
     print("-" * 40)
+
+    down_services = []
+
     for name, (url, host) in HTTP_SERVICES.items():
-        status = check_http(name, url, host)
+        status = check_http(name,url, host)
         print(f"{name:15} {status}")
-    for name, (host, port) in TCP_SERVICES.items():
-        status = check_tcp(name, host, port)
+        if not status.startswith("UP"):
+            down_services.append((name, status))
+
+    for name, (url, host) in TCP_SERVICES.items():
+        status = check_http(name,url, host)
         print(f"{name:15} {status}")
+        if not status.startswith("UP"):
+            down_services.append((name, status))
+
+    if down_services:
+        send_discord_alert(down_services)
+        send_telegram_alert(down_services)
+
+
 
 if __name__ == "__main__":
     main()
