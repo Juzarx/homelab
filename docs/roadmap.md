@@ -110,8 +110,8 @@
 - [x] Deploy Prometheus
 - [x] Deploy Grafana
 - [x] Import Node Exporter community dashboard in Grafana (ID 1860)
-- [ ] Monitor containers
-- [ ] lm-sensors for hardware temps
+- [x] Monitor containers
+- [x] lm-sensors for hardware temps
 
 **Skills:**
 - Monitoring
@@ -126,13 +126,13 @@
 
 ### Python Scripts
 
-- [ ] Backup scripts
-- [ ] Health checks
-- [ ] Container monitoring
-- [ ] Service restart scripts
+- [x] Health checks (with Discord and Telegram alerts, scheduled via cron)
+- [x] Minecraft server control panel (Flask, start/stop/status/player list)
+- [x] Service restart scripts
 
 **Skills:**
 - Python
+- Flask
 - Automation
 - Linux Scripting
 
