@@ -46,7 +46,7 @@ def send_discord_alert(down_services):
     try:
         requests.post(DISCORD_WEBHOOK_URL, json ={"content": message}, timeout=5)
     except requests.exceptions.RequestException:
-        print("Failde to send Discord Alert")
+        print("Failed to send Discord Alert")
 
 def send_telegram_alert(down_services):
     message = "Homelab Alert\nThe following services are DOWN\n"

@@ -1,10 +1,15 @@
 from flask import Flask, jsonify, render_template
 import subprocess
 import re
+from health_check import check_http, check_tcp, HTTP_SERVICES, TCP_SERVICES
 
 app = Flask(__name__)
 
-
+VM_HOSTS = {
+    "infra": "localhost",
+    "media": "julio@MediaVMIP",
+    "games": "julio@GamesVMIP",
+}
 
 @app.route("/")
 def home ():
@@ -13,7 +18,7 @@ def home ():
 @app.route("/api/minecraft/status")
 def minecraft_status():
     result = subprocess.run(
-        ["ssh", "julio@gamesVMIP", "docker", "inspect", "-f", "{{.State.Running}}", "mc"],
+        ["ssh", "julio@192.168.1.68", "docker", "inspect", "-f", "{{.State.Running}}", "mc"],
         capture_output=True, text=True
     )
     is_running = result.stdout.strip()== "true"
@@ -22,7 +27,7 @@ def minecraft_status():
 @app.route("/api/minecraft/start", methods=["POST"])
 def minecraft_start():
     result = subprocess.run(
-        ["ssh", "julio@gamesVMIP", "docker", "start", "mc"],
+        ["ssh", "julio@192.168.1.68", "docker", "start", "mc"],
         capture_output=True, text=True 
     )
     success = result.returncode == 0
@@ -35,11 +40,11 @@ def minecraft_start():
 @app.route("/api/minecraft/stop", methods=["POST"])
 def minecraft_stop():
     save_result = subprocess.run(
-        ["ssh", "julio@gamesVMIP", "docker", "exec", "mc", "rcon-cli", "save-all"],
+        ["ssh", "julio@192.168.1.68", "docker", "exec", "mc", "rcon-cli", "save-all"],
         capture_output=True, text=True 
     )
     stop_result = subprocess.run(
-        ["ssh", "julio@gamesVMIP", "docker", "stop","mc"],
+        ["ssh", "julio@192.168.1.68", "docker", "stop","mc"],
         capture_output=True, text=True
     )
     success = save_result.returncode == 0 and stop_result.returncode == 0
@@ -52,7 +57,7 @@ def minecraft_stop():
 @app.route("/api/minecraft/list", methods=["GET"])
 def minecraft_list():
     list_result = subprocess.run(
-        ["ssh", "julio@gamesVMIP", "docker", "exec", "mc", "rcon-cli", "list"],
+        ["ssh", "julio@192.168.1.68", "docker", "exec", "mc", "rcon-cli", "list"],
         capture_output=True, text=True
     )
     success = list_result.returncode == 0
@@ -70,6 +75,30 @@ def minecraft_list():
         "player_count": len(players),
         "players": players
     })
+
+@app.route("/api/services/status")
+def services_status():
+    statuses = {}
+    for name, (url, host) in HTTP_SERVICES.items():
+        statuses[name] = check_http(name, url, host)
+    for name, (host, port) in TCP_SERVICES.items():
+        statuses[name] = check_tcp(name, host, port)
+    return jsonify(statuses)
+
+@app.route("/api/restart/<vm>/<container>", methods=["POST"])
+def restart_container(vm, container):
+    if vm not in VM_HOSTS:
+        return jsonify({"success": False, "error": "Unknown VM"}), 400
+
+    host = VM_HOSTS[vm]
+    if host == "localhost":
+        command = ["docker", "restart", container]
+    else:
+        command = ["ssh", host, "docker", "restart", container]
+
+    result = subprocess.run(command, capture_output=True, text=True)
+    success = result.returncode == 0
+    return jsonify({"success": success, "output": result.stdout, "error": result.stderr})
 
 
 if __name__ == "__main__" :
