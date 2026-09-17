@@ -1,0 +1,25 @@
+name: Validate Docker Compose Files
+
+on:
+  push:
+    paths:
+      - '**/docker-compose.yml'
+      - '**/docker-compose.yaml'
+  pull_request:
+    paths:
+      - '**/docker-compose.yml'
+      - '**/docker-compose.yaml'
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Find and validate all compose files
+        run: |
+          find . -type f \( -name "docker-compose.yml" -o -name "docker-compose.yaml" \) | while read -r file; do
+            echo "Validating $file"
+            docker compose -f "$file" config -q
+          done
