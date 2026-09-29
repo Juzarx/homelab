@@ -23,6 +23,7 @@ TCP_SERVICES = {
     "Minecraft": ("GamesVMTailscaleIP", 25565),
 }
 
+
 def check_http(name, url, host_header=None):
     try:
         headers = {"Host": host_header} if host_header else {}
@@ -32,6 +33,7 @@ def check_http(name, url, host_header=None):
         status = f"DOWN ({type(e).__name__})"
     return status
 
+
 def check_tcp(name, host, port):
     try:
         with socket.create_connection((host, port), timeout=5):
@@ -39,14 +41,16 @@ def check_tcp(name, host, port):
     except OSError as e:
         return f"DOWN ({type(e).__name__})"
 
+
 def send_discord_alert(down_services):
     message = "** Homelab Alert **\nThe following services are DOWN:\n"
     for name, status in down_services:
         message += f"- {name}: {status}"
     try:
-        requests.post(DISCORD_WEBHOOK_URL, json ={"content": message}, timeout=5)
+        requests.post(DISCORD_WEBHOOK_URL, json={"content": message}, timeout=5)
     except requests.exceptions.RequestException:
         print("Failed to send Discord Alert")
+
 
 def send_telegram_alert(down_services):
     message = "Homelab Alert\nThe following services are DOWN\n"
@@ -54,10 +58,9 @@ def send_telegram_alert(down_services):
         message += f"-{name}: {status}\n"
     url = f"https://api.telegram.org/bot{TELEGRAM_BOT_TOKEN}/sendMessage"
     try:
-        requests.post(url, json={"chat_id": TELEGRAM_CHAT_ID,"text": message}, timeout=5)
+        requests.post(url, json={"chat_id": TELEGRAM_CHAT_ID, "text": message}, timeout=5)
     except requests.exceptions.RequestException:
         print("Failed to send telegram alert")
-    
 
 
 def main():
@@ -67,13 +70,13 @@ def main():
     down_services = []
 
     for name, (url, host) in HTTP_SERVICES.items():
-        status = check_http(name,url, host)
+        status = check_http(name, url, host)
         print(f"{name:15} {status}")
         if not status.startswith("UP"):
             down_services.append((name, status))
 
     for name, (url, host) in TCP_SERVICES.items():
-        status = check_http(name,url, host)
+        status = check_http(name, url, host)
         print(f"{name:15} {status}")
         if not status.startswith("UP"):
             down_services.append((name, status))
@@ -81,7 +84,6 @@ def main():
     if down_services:
         send_discord_alert(down_services)
         send_telegram_alert(down_services)
-
 
 
 if __name__ == "__main__":

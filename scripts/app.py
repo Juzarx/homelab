@@ -23,9 +23,9 @@ def home():
 def minecraft_status():
     result = subprocess.run(
         ["ssh", "julio@192.168.1.68", "docker", "inspect", "-f", "{{.State.Running}}", "mc"],
-        capture_output = True, text = True
+        capture_output=True, text=True
     )
-    is_running = result.stdout.strip()== "true"
+    is_running = result.stdout.strip() == "true"
     return jsonify({"running": is_running})
 
 
@@ -33,7 +33,7 @@ def minecraft_status():
 def minecraft_start():
     result = subprocess.run(
         ["ssh", "julio@192.168.1.68", "docker", "start", "mc"],
-        capture_output = True, text = True
+        capture_output=True, text=True
     )
     success = result.returncode == 0
     return jsonify({
@@ -47,11 +47,11 @@ def minecraft_start():
 def minecraft_stop():
     save_result = subprocess.run(
         ["ssh", "julio@192.168.1.68", "docker", "exec", "mc", "rcon-cli", "save-all"],
-        capture_output = True, text = True
+        capture_output=True, text=True
     )
     stop_result = subprocess.run(
         ["ssh", "julio@192.168.1.68", "docker", "stop", "mc"],
-        capture_output = True, text = True
+        capture_output=True, text=True
     )
     success = save_result.returncode == 0 and stop_result.returncode == 0
     return jsonify({
@@ -65,7 +65,7 @@ def minecraft_stop():
 def minecraft_list():
     list_result = subprocess.run(
         ["ssh", "julio@192.168.1.68", "docker", "exec", "mc", "rcon-cli", "list"],
-        capture_output = True, text = True
+        capture_output=True, text=True
     )
     success = list_result.returncode == 0
 
@@ -105,7 +105,7 @@ def restart_container(vm, container):
     else:
         command = ["ssh", host, "docker", "restart", container]
 
-    result = subprocess.run(command, capture_output = True, text = True)
+    result = subprocess.run(command, capture_output=True, text=True)
     success = result.returncode == 0
     return jsonify({"success": success, "output": result.stdout, "error": result.stderr})
 
