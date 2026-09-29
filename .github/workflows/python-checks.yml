@@ -7,6 +7,7 @@ on:
   pull_request:
     paths:
       - 'scripts/**.py'
+  workflow_dispatch:
 
 jobs:
   lint:
